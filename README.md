@@ -20,3 +20,16 @@ python -m unittest discover -s tests -v
 the Markdown files in `company/` are fictional ownership and decision records
 for IMPACT's Company Brain example. No private data or third-party packages are
 needed to run this repository's tests.
+
+## GitHub Actions review
+
+The [Review PR with IMPACT](.github/workflows/impact-review.yml) workflow is a
+manual example of using IMPACT in CI. Open **Actions → Review PR with IMPACT →
+Run workflow**, enter pull request `1`, and run it from `main`. The workflow starts
+a temporary FalkorDB service, runs IMPACT on the PR, compares graph-selected
+tests on the base and head commits, saves the Markdown and interactive HTML
+report as an artifact, and posts the Markdown report on the PR.
+
+The analysis job has read-only repository access. Only the separate comment
+job can post to the PR. This example accepts PR branches from this repository;
+it does not run tests from forks. It needs no FalkorDB Cloud or AI API key.
