@@ -23,12 +23,12 @@ needed to run this repository's tests.
 
 ## GitHub Actions review
 
-The [Review PR with IMPACT](.github/workflows/impact-review.yml) workflow is a
-manual example of using IMPACT in CI. Open **Actions → Review PR with IMPACT →
-Run workflow**, enter pull request `1`, and run it from `main`. The workflow starts
+The [Review PR with IMPACT](.github/workflows/impact-review.yml) workflow runs
+when a Python pull request opens or changes. You can also run it manually from
+**Actions → Review PR with IMPACT → Run workflow** with PR number `1`. It starts
 a temporary FalkorDB service, runs IMPACT on the PR, compares graph-selected
 tests on the base and head commits, saves the Markdown and interactive HTML
-report as an artifact, and posts the Markdown report on the PR.
+report as an artifact, and posts or updates a Markdown comment on the PR.
 
 The analysis job has read-only repository access. Only the separate comment
 job can post to the PR. This example accepts PR branches from this repository;
