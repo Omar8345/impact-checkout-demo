@@ -125,8 +125,10 @@ jobs:
           def api(*args, payload=None):
               result = subprocess.run(
                   ["gh", "api", *args], input=json.dumps(payload) if payload else None,
-                  text=True, capture_output=True, check=True,
+                  text=True, capture_output=True,
               )
+              if result.returncode:
+                  raise RuntimeError(result.stderr.strip() or result.stdout.strip())
               return json.loads(result.stdout)
 
           comments = api(f"{endpoint}?per_page=100")
